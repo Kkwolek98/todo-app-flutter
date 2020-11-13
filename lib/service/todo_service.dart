@@ -9,7 +9,7 @@ class TodoService {
     final response = await http.get(apiUrl + "/todos");
     print(response.statusCode);
     if (response.statusCode == 200) {
-      final parsed = jsonDecode(response.body).cast<Map<String, dynamic>>();
+      final parsed = jsonDecode(utf8.decode(response.bodyBytes)).cast<Map<String, dynamic>>();
       return parsed.map<TodoItem>((json)=>TodoItem.fromJson(json)).toList();
     } else {
       throw Exception("Could not fetch TodoItems");
