@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_list/service/todo_service.dart';
 
@@ -15,8 +16,11 @@ class TodoItemWidget extends StatelessWidget {
           Column(children: [
             Text(todo.title, style: TextStyle(fontSize: 18)),
             Text(todo.description, style: TextStyle(fontSize: 14, color: Colors.grey)),
-          ],crossAxisAlignment: CrossAxisAlignment.start)
-        ],),
+          ],crossAxisAlignment: CrossAxisAlignment.start),
+          CupertinoSwitch(value: todo.isDone, onChanged: null)
+        ],
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,     
+        ),
         padding: EdgeInsets.all(18),
       ),
       decoration: BoxDecoration(boxShadow: [
