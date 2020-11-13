@@ -2,24 +2,37 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_list/service/todo_service.dart';
 
-class TodoItemWidget extends StatelessWidget {
-  TodoItem todo;
+class TodoItemWidget extends StatefulWidget {
+  final TodoItem todo;
 
-  TodoItemWidget(this.todo);
+  const TodoItemWidget({Key key, this.todo}) : super(key: key);
+
+  TodoItemWidgetState createState() => TodoItemWidgetState();
+}
+
+class TodoItemWidgetState extends State<TodoItemWidget> {
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(bottom: 18),
       child: Padding(
-        child: Row(children: [
-          Column(children: [
-            Text(todo.title, style: TextStyle(fontSize: 18)),
-            Text(todo.description, style: TextStyle(fontSize: 14, color: Colors.grey)),
-          ],crossAxisAlignment: CrossAxisAlignment.start),
-          CupertinoSwitch(value: todo.isDone, onChanged: null)
-        ],
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,     
+        child: Row(
+          children: [
+            Column(children: [
+              Text(widget.todo.title, style: TextStyle(fontSize: 18)),
+              Text(widget.todo.description,
+                  style: TextStyle(fontSize: 14, color: Colors.grey)),
+            ], crossAxisAlignment: CrossAxisAlignment.start),
+            CupertinoSwitch(
+                value: widget.todo.isDone, onChanged: (bool value) {})
+          ],
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
         ),
         padding: EdgeInsets.all(18),
       ),

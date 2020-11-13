@@ -32,7 +32,7 @@ class TodoListViewState extends State<TodoListView> {
           preferredSize: const Size((double.infinity), kToolbarHeight + 40),
         ),
         body: ListView.builder(itemBuilder: (BuildContext context, int index) {
-          return new TodoItemWidget(_todoList[index]);
+          return new TodoItemWidget(todo: _todoList[index]);
         },
         itemCount: _todoList.length,
         )
