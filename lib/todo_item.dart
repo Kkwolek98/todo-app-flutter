@@ -11,7 +11,10 @@ class TodoItemWidget extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(bottom: 18),
       child: Padding(
-        child: Text(todo.title, style: TextStyle(fontSize: 18)),
+        child: Column(children: [
+          Text(todo.title, style: TextStyle(fontSize: 18)),
+          Text(todo.description, style: TextStyle(fontSize: 14)),
+        ],),
         padding: EdgeInsets.all(18),
       ),
       decoration: BoxDecoration(boxShadow: [
