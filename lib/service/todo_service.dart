@@ -30,11 +30,14 @@ class TodoService {
 
   static Future<bool> deleteTodo(int id) async {
     final response = await http.delete(apiUrl + "/todo/" + id.toString());
-    if (response.statusCode == 200) {
-      return true;
-    } else {
-      return false;
-    }
+    return response.statusCode == 200;
+  }
+
+  static Future<bool> addTodo(String title) async {
+    final response = await http.post(apiUrl + "/todo", body: jsonEncode(<String, String>{
+      'title': title
+    }));
+    return response.statusCode == 200;
   }
 }
 

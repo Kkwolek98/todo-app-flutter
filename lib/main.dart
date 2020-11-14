@@ -15,6 +15,7 @@ class TodoApp extends StatelessWidget {
         DefaultCupertinoLocalizations.delegate,
         DefaultWidgetsLocalizations.delegate,
       ],
+      theme: CupertinoThemeData(brightness: Brightness.light),
       title: 'Flutter Demo',
       home: TodoListView()
     );
