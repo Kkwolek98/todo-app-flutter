@@ -39,6 +39,9 @@ class TodoItemWidgetState extends State<TodoItemWidget> {
             CupertinoSwitch(
                 value: widget.todo.isDone,
                 onChanged: (bool value) {
+                  setState(() {
+                    widget.todo.isDone = !widget.todo.isDone;
+                  });
                   _handleDoneToggle();
                 })
           ],
