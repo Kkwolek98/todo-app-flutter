@@ -61,7 +61,13 @@ class TodoListViewState extends State<TodoListView> {
             return GestureDetector(
               onLongPress: () {
                 _handleDeleteDialog().then((value) => {
-                  
+                  if(value) {
+                    TodoService.deleteTodo(_todoList[index].id).then((isDeleted) => {
+                      if(isDeleted) {
+                        _fetchTodoList()
+                      }
+                    })
+                  }
                 });
               },
               child: new TodoItemWidget(todo: _todoList[index]),

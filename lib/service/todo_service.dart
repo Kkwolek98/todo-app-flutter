@@ -27,6 +27,15 @@ class TodoService {
       throw Exception("Could not toggle isDone");
     }
   }
+
+  static Future<bool> deleteTodo(int id) async {
+    final response = await http.delete(apiUrl + "/todo/" + id.toString());
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
 
 class TodoItem {
