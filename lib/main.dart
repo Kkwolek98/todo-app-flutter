@@ -11,6 +11,11 @@ class TodoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoApp(
+      localizationsDelegates: [
+        DefaultMaterialLocalizations.delegate,
+        DefaultCupertinoLocalizations.delegate,
+        DefaultWidgetsLocalizations.delegate,
+      ],
       title: 'Flutter Demo',
       // theme: ThemeData(
       //   primarySwatch: Colors.orange,

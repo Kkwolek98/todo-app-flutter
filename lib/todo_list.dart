@@ -24,6 +24,31 @@ class TodoListViewState extends State<TodoListView> {
         });
   }
 
+  Future<bool> _handleDeleteDialog() async {
+    return showDialog<bool>(
+        context: context,
+        builder: (BuildContext context) {
+          return CupertinoAlertDialog(
+            title: Text("Delete this todo item?"),
+            content: Text("Do you really want to delete this todo item?"),
+            actions: <Widget>[
+              CupertinoDialogAction(
+                child: Text("Cancel"),
+                onPressed: () {
+                  Navigator.of(context, rootNavigator: true).pop(false);
+                },
+              ),
+              CupertinoDialogAction(
+                child: Text("Delete"),
+                onPressed: () {
+                  Navigator.of(context, rootNavigator: true).pop(true);
+                },
+                )
+            ],
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,11 +56,18 @@ class TodoListViewState extends State<TodoListView> {
           child: AppTitle("Todo list"),
           preferredSize: const Size((double.infinity), kToolbarHeight + 40),
         ),
-        body: ListView.builder(itemBuilder: (BuildContext context, int index) {
-          return new TodoItemWidget(todo: _todoList[index]);
-        },
-        itemCount: _todoList.length,
-        )
-      );
+        body: ListView.builder(
+          itemBuilder: (BuildContext context, int index) {
+            return GestureDetector(
+              onLongPress: () {
+                _handleDeleteDialog().then((value) => {
+                  
+                });
+              },
+              child: new TodoItemWidget(todo: _todoList[index]),
+            );
+          },
+          itemCount: _todoList.length,
+        ));
   }
 }
