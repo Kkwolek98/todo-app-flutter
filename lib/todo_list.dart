@@ -93,7 +93,7 @@ class TodoListViewState extends State<TodoListView> {
             child: CupertinoTextField(
               suffix: IconButton(
                 icon: Icon(
-                  CupertinoIcons.add_circled,
+                  CupertinoIcons.add_circled_solid,
                   color: CupertinoColors.activeGreen,
                 ),
                 onPressed: () {
