@@ -9,19 +9,31 @@ class TodoService {
     final response = await http.get(apiUrl + "/todos");
     print(response.statusCode);
     if (response.statusCode == 200) {
-      final parsed = jsonDecode(utf8.decode(response.bodyBytes)).cast<Map<String, dynamic>>();
-      return parsed.map<TodoItem>((json)=>TodoItem.fromJson(json)).toList();
+      final parsed = jsonDecode(utf8.decode(response.bodyBytes))
+          .cast<Map<String, dynamic>>();
+      return parsed.map<TodoItem>((json) => TodoItem.fromJson(json)).toList();
     } else {
       throw Exception("Could not fetch TodoItems");
+    }
+  }
+
+  static Future<bool> toggleTodoDone(int id) async {
+    final response =
+        await http.put(apiUrl + "/todo/toggle_done/" + id.toString());
+    if (response.statusCode == 200) {
+      final parsed = jsonDecode(utf8.decode(response.bodyBytes));
+      return TodoItem.fromJson(parsed).isDone;
+    } else {
+      throw Exception("Could not toggle isDone");
     }
   }
 }
 
 class TodoItem {
-  final int id;
-  final String description;
-  final String title;
-  final bool isDone;
+  int id;
+  String description;
+  String title;
+  bool isDone;
 
   TodoItem({this.id, this.description, this.title, this.isDone});
 

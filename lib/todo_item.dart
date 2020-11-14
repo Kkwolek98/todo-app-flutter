@@ -11,10 +11,17 @@ class TodoItemWidget extends StatefulWidget {
 }
 
 class TodoItemWidgetState extends State<TodoItemWidget> {
-
   @override
   void initState() {
     super.initState();
+  }
+
+  void _handleDoneToggle() {
+    TodoService.toggleTodoDone(widget.todo.id).then((isDone) => {
+          setState(() {
+            widget.todo.isDone = isDone;
+          })
+        });
   }
 
   @override
@@ -30,7 +37,10 @@ class TodoItemWidgetState extends State<TodoItemWidget> {
                   style: TextStyle(fontSize: 14, color: Colors.grey)),
             ], crossAxisAlignment: CrossAxisAlignment.start),
             CupertinoSwitch(
-                value: widget.todo.isDone, onChanged: (bool value) {})
+                value: widget.todo.isDone,
+                onChanged: (bool value) {
+                  _handleDoneToggle();
+                })
           ],
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
         ),
