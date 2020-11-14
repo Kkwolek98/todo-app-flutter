@@ -32,7 +32,7 @@ class TodoItemWidgetState extends State<TodoItemWidget> {
         child: Row(
           children: [
             Column(children: [
-              Text(widget.todo.title, style: TextStyle(fontSize: 18)),
+              Text(widget.todo.title, style: TextStyle(fontSize: 18, decoration: widget.todo.isDone ? TextDecoration.lineThrough : null)),
               Text(widget.todo.description,
                   style: TextStyle(fontSize: 14, color: Colors.grey)),
             ], crossAxisAlignment: CrossAxisAlignment.start),
@@ -51,7 +51,7 @@ class TodoItemWidgetState extends State<TodoItemWidget> {
       ),
       decoration: BoxDecoration(boxShadow: [
         BoxShadow(color: Colors.black12, spreadRadius: 4, blurRadius: 8)
-      ], borderRadius: BorderRadius.circular(20), color: Colors.white),
+      ], borderRadius: BorderRadius.circular(20), color: widget.todo.isDone ? Colors.black12 : Colors.white),
     );
   }
 }
