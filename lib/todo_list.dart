@@ -103,6 +103,7 @@ class TodoListViewState extends State<TodoListView> {
               controller: _todoTextController,
               padding: EdgeInsets.all(12.0),
               placeholder: "New todo...",
+              autofocus: false,
             ),
             alignment: Alignment.bottomLeft,
           )
